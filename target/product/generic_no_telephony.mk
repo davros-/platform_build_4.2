@@ -26,10 +26,9 @@ PRODUCT_PACKAGES := \
     CertInstaller \
     DrmProvider \
     Email \
-    Exchange \
+    Exchange2 \
     FusedLocation \
     InputDevices \
-    LatinIME \
     Launcher2 \
     MusicFX \
     Phone \
