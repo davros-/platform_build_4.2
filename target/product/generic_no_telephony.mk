@@ -28,6 +28,7 @@ PRODUCT_PACKAGES := \
     Email \
     Exchange2 \
     FusedLocation \
+    Gallery2 \
     InputDevices \
     Launcher2 \
     MusicFX \
