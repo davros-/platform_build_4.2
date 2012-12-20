@@ -16,7 +16,7 @@ endif
 ifneq "" "$(filter eng.%,$(BUILD_NUMBER))"
   # BUILD_NUMBER has a timestamp in it, which means that
   # it will change every time.  Pick a stable value.
-  FILE_NAME_TAG := eng.$(USER)
+  FILE_NAME_TAG := $(shell date +"%m-%d-%y").$(USER)
 else
   FILE_NAME_TAG := $(BUILD_NUMBER)
 endif
