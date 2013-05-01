@@ -1198,11 +1198,18 @@ ifeq ($(TARGET_OTA_ASSERT_DEVICE),)
     $(INTERNAL_OTA_PACKAGE_TARGET): override_device := auto
 else
     $(INTERNAL_OTA_PACKAGE_TARGET): override_device := $(TARGET_OTA_ASSERT_DEVICE)
+endif
 
 ifeq ($(TARGET_OTA_ASSERT_SKIP),true)
     $(INTERNAL_OTA_PACKAGE_TARGET): skip_assert := true
 else
     $(INTERNAL_OTA_PACKAGE_TARGET): skip_assert := false
+endif
+
+ifeq ($(TARGET_DISABLE_PERSIST),true)
+    $(INTERNAL_OTA_PACKAGE_TARGET): persist := false
+else
+    $(INTERNAL_OTA_PACKAGE_TARGET): persist := true
 endif
 
 $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(DISTTOOLS)
@@ -1211,6 +1218,8 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(DISTTOOLS)
 	   -p $(HOST_OUT) \
 	   -k $(KEY_CERT_PAIR) \
 	   --no_assert=$(skip_assert) \
+	   --persist=$(persist) \
+	   --override_device=$(override_device) \
 	   $(BUILT_TARGET_FILES_PACKAGE) $@
 
 .PHONY: otapackage elite
